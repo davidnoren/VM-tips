@@ -994,9 +994,10 @@ function points(result, tip) {
 }
 
 function updateScores() {
+  const table = $('#matches').DataTable();
   const totals = Object.fromEntries(players.map(p => [p, 0]));
 
-  $("#matches tbody tr").each(function() {
+  $(table.rows().nodes()).each(function() {
     const row = $(this);
     const result = row.find(".result-input").val();
     const r = parseScore(result);
@@ -1052,7 +1053,7 @@ $(document).ready(function() {
   });
 
   $(document).on("input", ".result-input", updateScores);
-  setTimeout(updateScores, 100);
+  setTimeout(updateScores, 300);
 });
 </script>
 </body>
