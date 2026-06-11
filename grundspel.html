@@ -1052,7 +1052,7 @@ $(document).ready(function() {
   });
 
   $(document).on("input", ".result-input", updateScores);
-  updateScores();
+  setTimeout(updateScores, 100);
 });
 </script>
 </body>
