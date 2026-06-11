@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VM-tipset 2026</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #eef6f0;
+  color: #1f2933;
+}
+
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.header {
+  background: linear-gradient(135deg, #07592b, #0b7a3b);
+  color: white;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 18px;
+  text-decoration: none;
+  color: #1f2933;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.18);
+}
+
+.icon {
+  font-size: 42px;
+}
+
+.card h2 {
+  margin: 12px 0 8px;
+}
+
+.card p {
+  margin: 0;
+  color: #64748b;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>🏆 VM-tipset 2026</h1>
+    <p>Välj vilken del av tävlingen du vill se.</p>
+  </div>
+
+  <div class="cards">
+    <a class="card" href="grundspel.html">
+      <div class="icon">⚽</div>
+      <h2>Grundspel</h2>
+      <p>Matcher, tips, resultat och poäng för gruppspelet.</p>
+    </a>
+
+    <a class="card" href="slutspel.html">
+      <div class="icon">🏆</div>
+      <h2>Slutspel</h2>
+      <p>Utslagsmatcher, vinnare och avgörande poäng.</p>
+    </a>
+
+    <a class="card" href="bonusfragor.html">
+      <div class="icon">⭐</div>
+      <h2>Bonusfrågor</h2>
+      <p>Skyttekung, vinnare, flopplag och andra bonuspoäng.</p>
+    </a>
+  </div>
+</div>
+
+</body>
+</html>
