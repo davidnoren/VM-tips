@@ -1040,7 +1040,7 @@ function updateScores() {
 }
 
 $(document).ready(function() {
-  $('#matches').DataTable({
+  table = $('#matches').DataTable({
     pageLength: 25,
     order: [[0, 'asc']],
     language: {
@@ -1053,7 +1053,8 @@ $(document).ready(function() {
   });
 
   $(document).on("input", ".result-input", updateScores);
-  setTimeout(updateScores, 300);
+  table.on('draw', updateScores);
+  setTimeout(updateScores, 500);
 });
 </script>
 </body>
