@@ -6,43 +6,108 @@
 <title>Slutspelsträd – David</title>
 <style>
 :root {
-  --green: #0b7a3b;
-  --green-dark: #07592b;
+  --green: #07592b;
+  --green2: #0b7a3b;
   --gold: #ffd35a;
-  --line: #d4d4d8;
-  --soft: #f7faf8;
+  --bg: #eef6f0;
+  --card: #ffffff;
+  --line: #d7e1dc;
+  --text: #1f2933;
 }
 * { box-sizing: border-box; }
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: linear-gradient(135deg, #eaf6ee 0%, #ffffff 45%, #f3f6fb 100%);
-  color: #1f2933;
+  color: var(--text);
 }
-.container { max-width: 1280px; margin: 0 auto; padding: 20px; }
-.hero {
-  border-radius: 18px;
-  background: linear-gradient(135deg, var(--green-dark), var(--green));
-  color: white;
-  padding: 24px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-  margin-bottom: 18px;
-}
-.hero h1 { margin: 0 0 8px 0; font-size: 30px; }
-.hero p { margin: 0; opacity: 0.92; }
-.nav { margin: 0 0 18px 0; display: flex; gap: 10px; flex-wrap: wrap; }
-.nav a, .button {
-  display: inline-block;
+.container { padding: 20px; max-width: 1600px; margin: 0 auto; }
+.nav { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+.nav a {
   text-decoration: none;
-  color: #07592b;
-  background: #fff;
-  border: 1px solid #dbe4df;
+  color: var(--green);
+  background: white;
+  border: 1px solid var(--line);
   padding: 10px 14px;
   border-radius: 999px;
   font-weight: 700;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
-.nav a:hover, .button:hover { background: #f1f8f3; }
+.hero {
+  background: linear-gradient(135deg, var(--green), var(--green2));
+  color: white;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.15);
+  margin-bottom: 18px;
+}
+.hero h1 { margin: 0 0 6px; }
+.hero p { margin: 0; opacity: .9; }
+.bracket {
+  overflow-x: auto;
+  background: white;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 4px 18px rgba(0,0,0,.10);
+}
+.bracket-grid {
+  min-width: 1420px;
+  display: grid;
+  grid-template-columns: 1.15fr 1.1fr 1.05fr 1fr 1.15fr 1fr 1.05fr 1.1fr 1.15fr;
+  gap: 14px;
+  align-items: center;
+}
+.round-col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.round-col.r16 { gap: 52px; }
+.round-col.qf { gap: 150px; }
+.round-col.sf { gap: 360px; }
+.round-col.final { gap: 40px; }
+.match {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 9px;
+  min-height: 92px;
+  box-shadow: 0 2px 9px rgba(0,0,0,.08);
+}
+.match-title {
+  display: inline-block;
+  background: var(--green);
+  color: white;
+  font-weight: 800;
+  font-size: 12px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  margin-bottom: 7px;
+  white-space: nowrap;
+}
+.match.final-match {
+  border: 2px solid var(--gold);
+  background: linear-gradient(135deg, #fff9df, #ffffff);
+}
+.match.final-match .match-title {
+  background: linear-gradient(135deg, var(--gold), #ffec9f);
+  color: var(--green);
+}
+.team {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  padding: 7px 8px;
+  margin: 5px 0;
+  font-weight: 700;
+  min-height: 34px;
+  white-space: nowrap;
+}
+.flag { font-size: 18px; }
+.empty { color: #94a3b8; }
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -53,70 +118,14 @@ body {
   border-radius: 18px;
   padding: 22px;
   text-decoration: none;
-  color: #1f2933;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
-  border: 1px solid #e2e8f0;
-  transition: .18s ease;
+  color: var(--text);
+  box-shadow: 0 4px 16px rgba(0,0,0,.10);
+  border: 1px solid var(--line);
 }
-.card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+.card:hover { transform: translateY(-3px); }
 .card .icon { font-size: 42px; }
-.card h2 { margin: 12px 0 8px; color: #07592b; }
-.card p { margin: 0; color: #64748b; line-height: 1.4; }
-.bracket-wrap {
-  overflow-x: auto;
-  background: white;
-  border-radius: 18px;
-  padding: 18px;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.10);
-  border: 1px solid #e2e8f0;
-}
-.bracket-grid {
-  display: grid;
-  grid-auto-rows: 30px;
-  grid-template-columns: repeat(var(--cols), minmax(54px, 1fr));
-  gap: 4px;
-  min-width: 1040px;
-}
-.cell {
-  border-radius: 8px;
-  min-height: 30px;
-  padding: 5px 7px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  white-space: nowrap;
-}
-.team {
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
-  font-weight: 700;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-}
-.round {
-  background: #07592b;
-  color: white;
-  font-weight: 800;
-  border: 1px solid #07592b;
-  letter-spacing: .01em;
-}
-.matchno {
-  background: #fff7db;
-  border: 1px solid #f4c542;
-  color: #604600;
-  font-size: 12px;
-  font-weight: 800;
-}
-.final-team {
-  background: #fff7db;
-  border: 2px solid #ffd35a;
-}
-.winner {
-  background: linear-gradient(135deg, #fff7db, #ffffff);
-  border: 2px solid #ffd35a;
-  color: #07592b;
-  font-weight: 900;
-}
+.card h2 { margin: 10px 0 8px; color: var(--green); }
+.card p { margin: 0; color: #64748b; }
 @media (max-width: 700px) {
   .container { padding: 10px; }
   .hero h1 { font-size: 24px; }
@@ -126,16 +135,176 @@ body {
 <body>
 <div class="container">
   <div class="nav">
-    <a href="slutspel.html">← Till slutspel</a>
+    <a href="slutspel.html">← Slutspel</a>
     <a href="index.html">🏠 Portal</a>
   </div>
   <div class="hero">
     <h1>🏆 Davids slutspelsträd</h1>
-    <p>Slutspel baserat på tippat grundspel.</p>
+    <p>Modern bracket-layout utan matchnummer, med tydliga matchkort och flaggor.</p>
   </div>
-  <div class="bracket-wrap">
-    <div class="bracket-grid" style="--cols:17;">
-      <div class="cell round" style="grid-row:1;grid-column:1;">Sextondelsfinal</div><div class="cell round" style="grid-row:1;grid-column:17;">Sextondelsfinal</div><div class="cell team" style="grid-row:2;grid-column:1;"><span style="margin-right:4px">🇩🇪</span>Tyskland</div><div class="cell matchno" style="grid-row:2;grid-column:16;">76</div><div class="cell team" style="grid-row:2;grid-column:17;"><span style="margin-right:4px">🇧🇷</span>Brasilien</div><div class="cell team" style="grid-row:3;grid-column:1;"><span style="margin-right:4px">🇵🇾</span>Paraguay</div><div class="cell round" style="grid-row:3;grid-column:3;">Åttondelsfinal</div><div class="cell round" style="grid-row:3;grid-column:15;">Åttondelsfinal</div><div class="cell team" style="grid-row:3;grid-column:17;"><span style="margin-right:4px">🇸🇪</span>Sverige</div><div class="cell matchno" style="grid-row:4;grid-column:2;">89</div><div class="cell team" style="grid-row:4;grid-column:3;"><span style="margin-right:4px">🇩🇪</span>Tyskland</div><div class="cell matchno" style="grid-row:4;grid-column:14;">91</div><div class="cell team" style="grid-row:4;grid-column:15;"><span style="margin-right:4px">🇧🇷</span>Brasilien</div><div class="cell round" style="grid-row:5;grid-column:1;">Sextondelsfinal</div><div class="cell team" style="grid-row:5;grid-column:3;"><span style="margin-right:4px">🇳🇴</span>Norge</div><div class="cell team" style="grid-row:5;grid-column:15;"><span style="margin-right:4px">🇫🇷</span>Frankrike</div><div class="cell round" style="grid-row:5;grid-column:17;">Sextondelsfinal</div><div class="cell team" style="grid-row:6;grid-column:1;"><span style="margin-right:4px">🇳🇴</span>Norge</div><div class="cell matchno" style="grid-row:6;grid-column:16;">78</div><div class="cell team" style="grid-row:6;grid-column:17;"><span style="margin-right:4px">🇪🇨</span>Ecuador</div><div class="cell team" style="grid-row:7;grid-column:1;"><span style="margin-right:4px">🇯🇵</span>Japan</div><div class="cell round" style="grid-row:7;grid-column:5;">Kvartsfinal</div><div class="cell round" style="grid-row:7;grid-column:13;">Kvartsfinal</div><div class="cell team" style="grid-row:7;grid-column:17;"><span style="margin-right:4px">🇫🇷</span>Frankrike</div><div class="cell matchno" style="grid-row:8;grid-column:4;">97</div><div class="cell team" style="grid-row:8;grid-column:5;"><span style="margin-right:4px">🇳🇴</span>Norge</div><div class="cell matchno" style="grid-row:8;grid-column:12;">99</div><div class="cell team" style="grid-row:8;grid-column:13;"><span style="margin-right:4px">🇫🇷</span>Frankrike</div><div class="cell round" style="grid-row:9;grid-column:1;">Sextondelsfinal</div><div class="cell team" style="grid-row:9;grid-column:5;"><span style="margin-right:4px">🇳🇱</span>Nederländerna</div><div class="cell team" style="grid-row:9;grid-column:13;"><span style="margin-right:4px">🇰🇷</span>Sydkorea</div><div class="cell round" style="grid-row:9;grid-column:17;">Sextondelsfinal</div><div class="cell team" style="grid-row:10;grid-column:1;"><span style="margin-right:4px">🇨🇿</span>Czechia</div><div class="cell matchno" style="grid-row:10;grid-column:16;">79</div><div class="cell team" style="grid-row:10;grid-column:17;"><span style="margin-right:4px">🇰🇷</span>Sydkorea</div><div class="cell team" style="grid-row:11;grid-column:1;"><span style="margin-right:4px">🇶🇦</span>Qatar</div><div class="cell round" style="grid-row:11;grid-column:3;">Åttondelsfinal</div><div class="cell round" style="grid-row:11;grid-column:9;">Final</div><div class="cell round" style="grid-row:11;grid-column:15;">Åttondelsfinal</div><div class="cell team" style="grid-row:11;grid-column:17;"><span style="margin-right:4px">🇸🇦</span>Saudiarabien</div><div class="cell matchno" style="grid-row:12;grid-column:2;">90</div><div class="cell team" style="grid-row:12;grid-column:3;"><span style="margin-right:4px">🇨🇿</span>Czechia</div><div class="cell matchno" style="grid-row:12;grid-column:8;">104</div><div class="cell team" style="grid-row:12;grid-column:9;"><span style="margin-right:4px">🇪🇸</span>Spanien</div><div class="cell matchno" style="grid-row:12;grid-column:14;">92</div><div class="cell team" style="grid-row:12;grid-column:15;"><span style="margin-right:4px">🇰🇷</span>Sydkorea</div><div class="cell round" style="grid-row:13;grid-column:1;">Sextondelsfinal</div><div class="cell team" style="grid-row:13;grid-column:3;"><span style="margin-right:4px">🇳🇱</span>Nederländerna</div><div class="cell team" style="grid-row:13;grid-column:9;"><span style="margin-right:4px">🇫🇷</span>Frankrike</div><div class="cell team" style="grid-row:13;grid-column:15;"><span style="margin-right:4px">🇭🇷</span>Kroatien</div><div class="cell round" style="grid-row:13;grid-column:17;">Sextondelsfinal</div><div class="cell team" style="grid-row:14;grid-column:1;"><span style="margin-right:4px">🇳🇱</span>Nederländerna</div><div class="cell matchno" style="grid-row:14;grid-column:16;">80</div><div class="cell team" style="grid-row:14;grid-column:17;"><span style="margin-right:4px">🇭🇷</span>Kroatien</div><div class="cell team" style="grid-row:15;grid-column:1;"><span style="margin-right:4px">🇲🇦</span>Marocko</div><div class="cell team" style="grid-row:15;grid-column:17;">Kongo</div><div class="cell round" style="grid-row:16;grid-column:7;">Semifinal</div><div class="cell round" style="grid-row:16;grid-column:11;">Semifinal</div><div class="cell matchno" style="grid-row:17;grid-column:6;">101</div><div class="cell team" style="grid-row:17;grid-column:7;"><span style="margin-right:4px">🇳🇴</span>Norge</div><div class="cell matchno" style="grid-row:17;grid-column:10;">102</div><div class="cell team" style="grid-row:17;grid-column:11;"><span style="margin-right:4px">🇫🇷</span>Frankrike</div><div class="cell team" style="grid-row:18;grid-column:7;"><span style="margin-right:4px">🇪🇸</span>Spanien</div><div class="cell team" style="grid-row:18;grid-column:11;"><span style="margin-right:4px">🇦🇷</span>Argentina</div><div class="cell round" style="grid-row:19;grid-column:1;">Sextondelsfinal</div><div class="cell round" style="grid-row:19;grid-column:17;">Sextondelsfinal</div><div class="cell team" style="grid-row:20;grid-column:1;"><span style="margin-right:4px">🇨🇴</span>Colombia</div><div class="cell matchno" style="grid-row:20;grid-column:16;">86</div><div class="cell team" style="grid-row:20;grid-column:17;"><span style="margin-right:4px">🇦🇷</span>Argentina</div><div class="cell team" style="grid-row:21;grid-column:1;"><span style="margin-right:4px">🏴</span>England</div><div class="cell round" style="grid-row:21;grid-column:3;">Åttondelsfinal</div><div class="cell round" style="grid-row:21;grid-column:9;">Bronsmatch</div><div class="cell round" style="grid-row:21;grid-column:15;">Åttondelsfinal</div><div class="cell team" style="grid-row:21;grid-column:17;"><span style="margin-right:4px">🇺🇾</span>Uruguay</div><div class="cell matchno" style="grid-row:22;grid-column:2;">93</div><div class="cell team" style="grid-row:22;grid-column:3;"><span style="margin-right:4px">🏴</span>England</div><div class="cell matchno" style="grid-row:22;grid-column:8;">103</div><div class="cell team" style="grid-row:22;grid-column:9;"><span style="margin-right:4px">🇳🇴</span>Norge</div><div class="cell matchno" style="grid-row:22;grid-column:14;">95</div><div class="cell team" style="grid-row:22;grid-column:15;"><span style="margin-right:4px">🇦🇷</span>Argentina</div><div class="cell round" style="grid-row:23;grid-column:1;">Sextondelsfinal</div><div class="cell team" style="grid-row:23;grid-column:3;"><span style="margin-right:4px">🇪🇸</span>Spanien</div><div class="cell team" style="grid-row:23;grid-column:9;"><span style="margin-right:4px">🇦🇷</span>Argentina</div><div class="cell team" style="grid-row:23;grid-column:15;"><span style="margin-right:4px">🇹🇷</span>Turkiet</div><div class="cell round" style="grid-row:23;grid-column:17;">Sextondelsfinal</div><div class="cell team" style="grid-row:24;grid-column:1;"><span style="margin-right:4px">🇪🇸</span>Spanien</div><div class="cell matchno" style="grid-row:24;grid-column:16;">88</div><div class="cell team" style="grid-row:24;grid-column:17;"><span style="margin-right:4px">🇹🇷</span>Turkiet</div><div class="cell team" style="grid-row:25;grid-column:1;"><span style="margin-right:4px">🇦🇹</span>Österrike</div><div class="cell round" style="grid-row:25;grid-column:5;">Kvartsfinal</div><div class="cell round" style="grid-row:25;grid-column:13;">Kvartsfinal</div><div class="cell team" style="grid-row:25;grid-column:17;"><span style="margin-right:4px">🇮🇷</span>Iran</div><div class="cell matchno" style="grid-row:26;grid-column:4;">98</div><div class="cell team" style="grid-row:26;grid-column:5;"><span style="margin-right:4px">🇪🇸</span>Spanien</div><div class="cell matchno" style="grid-row:26;grid-column:12;">100</div><div class="cell team" style="grid-row:26;grid-column:13;"><span style="margin-right:4px">🇦🇷</span>Argentina</div><div class="cell round" style="grid-row:27;grid-column:1;">Sextondelsfinal</div><div class="cell team" style="grid-row:27;grid-column:5;"><span style="margin-right:4px">🇺🇸</span>USA</div><div class="cell team" style="grid-row:27;grid-column:13;"><span style="margin-right:4px">🇵🇹</span>Portugal</div><div class="cell round" style="grid-row:27;grid-column:17;">Sextondelsfinal</div><div class="cell team" style="grid-row:28;grid-column:1;"><span style="margin-right:4px">🇺🇸</span>USA</div><div class="cell matchno" style="grid-row:28;grid-column:16;">85</div><div class="cell team" style="grid-row:28;grid-column:17;"><span style="margin-right:4px">🇨🇭</span>Schweiz</div><div class="cell team" style="grid-row:29;grid-column:1;"><span style="margin-right:4px">🇨🇮</span>Elfenbenskusten</div><div class="cell round" style="grid-row:29;grid-column:3;">Åttondelsfinal</div><div class="cell round" style="grid-row:29;grid-column:15;">Åttondelsfinal</div><div class="cell team" style="grid-row:29;grid-column:17;">Algeriet</div><div class="cell matchno" style="grid-row:30;grid-column:2;">94</div><div class="cell team" style="grid-row:30;grid-column:3;"><span style="margin-right:4px">🇺🇸</span>USA</div><div class="cell matchno" style="grid-row:30;grid-column:14;">96</div><div class="cell team" style="grid-row:30;grid-column:15;"><span style="margin-right:4px">🇨🇭</span>Schweiz</div><div class="cell round" style="grid-row:31;grid-column:1;">Sextondelsfinal</div><div class="cell team" style="grid-row:31;grid-column:3;"><span style="margin-right:4px">🇧🇪</span>Belgien</div><div class="cell team" style="grid-row:31;grid-column:15;"><span style="margin-right:4px">🇵🇹</span>Portugal</div><div class="cell round" style="grid-row:31;grid-column:17;">Sextondelsfinal</div><div class="cell team" style="grid-row:32;grid-column:1;"><span style="margin-right:4px">🇧🇪</span>Belgien</div><div class="cell matchno" style="grid-row:32;grid-column:16;">87</div><div class="cell team" style="grid-row:32;grid-column:17;"><span style="margin-right:4px">🇵🇹</span>Portugal</div><div class="cell team" style="grid-row:33;grid-column:1;"><span style="margin-right:4px">🇲🇽</span>Mexiko</div><div class="cell team" style="grid-row:33;grid-column:17;"><span style="margin-right:4px">🇬🇭</span>Ghana</div>
+  <div class="bracket">
+    <div class="bracket-grid">
+      <div class="round-col s16">
+      <div class="match ">
+        <div class="match-title">Sextondelsfinal</div>
+        <div class="team"><span class="flag">🇩🇪</span><span>Tyskland</span></div><div class="team"><span class="flag">🇵🇾</span><span>Paraguay</span></div>
+      </div>
+    
+      <div class="match ">
+        <div class="match-title">Sextondelsfinal</div>
+        <div class="team"><span class="flag">🇳🇴</span><span>Norge</span></div><div class="team"><span class="flag">🇯🇵</span><span>Japan</span></div>
+      </div>
+    
+      <div class="match ">
+        <div class="match-title">Sextondelsfinal</div>
+        <div class="team"><span class="flag">🇨🇿</span><span>Czechia</span></div><div class="team"><span class="flag">🇶🇦</span><span>Qatar</span></div>
+      </div>
+    
+      <div class="match ">
+        <div class="match-title">Sextondelsfinal</div>
+        <div class="team"><span class="flag">🇳🇱</span><span>Nederländerna</span></div><div class="team"><span class="flag">🇲🇦</span><span>Marocko</span></div>
+      </div>
+    
+      <div class="match ">
+        <div class="match-title">Sextondelsfinal</div>
+        <div class="team"><span class="flag">🇨🇴</span><span>Colombia</span></div><div class="team"><span class="flag">🏴</span><span>England</span></div>
+      </div>
+    
+      <div class="match ">
+        <div class="match-title">Sextondelsfinal</div>
+        <div class="team"><span class="flag">🇪🇸</span><span>Spanien</span></div><div class="team"><span class="flag">🇦🇹</span><span>Österrike</span></div>
+      </div>
+    
+      <div class="match ">
+        <div class="match-title">Sextondelsfinal</div>
+        <div class="team"><span class="flag">🇺🇸</span><span>USA</span></div><div class="team"><span class="flag">🇨🇮</span><span>Elfenbenskusten</span></div>
+      </div>
+    
+      <div class="match ">
+        <div class="match-title">Sextondelsfinal</div>
+        <div class="team"><span class="flag">🇧🇪</span><span>Belgien</span></div><div class="team"><span class="flag">🇲🇽</span><span>Mexiko</span></div>
+      </div>
+    </div><div class="round-col r16">
+      <div class="match ">
+        <div class="match-title">Åttondelsfinal</div>
+        <div class="team"><span class="flag">🇩🇪</span><span>Tyskland</span></div><div class="team"><span class="flag">🇳🇴</span><span>Norge</span></div>
+      </div>
+    
+      <div class="match ">
+        <div class="match-title">Åttondelsfinal</div>
+        <div class="team"><span class="flag">🇨🇿</span><span>Czechia</span></div><div class="team"><span class="flag">🇳🇱</span><span>Nederländerna</span></div>
+      </div>
+    
+      <div class="match ">
+        <div class="match-title">Åttondelsfinal</div>
+        <div class="team"><span class="flag">🏴</span><span>England</span></div><div class="team"><span class="flag">🇪🇸</span><span>Spanien</span></div>
+      </div>
+    
+      <div class="match ">
+        <div class="match-title">Åttondelsfinal</div>
+        <div class="team"><span class="flag">🇺🇸</span><span>USA</span></div><div class="team"><span class="flag">🇧🇪</span><span>Belgien</span></div>
+      </div>
+    </div><div class="round-col qf">
+      <div class="match ">
+        <div class="match-title">Kvartsfinal</div>
+        <div class="team"><span class="flag">🇳🇴</span><span>Norge</span></div><div class="team"><span class="flag">🇳🇱</span><span>Nederländerna</span></div>
+      </div>
+    
+      <div class="match ">
+        <div class="match-title">Kvartsfinal</div>
+        <div class="team"><span class="flag">🇪🇸</span><span>Spanien</span></div><div class="team"><span class="flag">🇺🇸</span><span>USA</span></div>
+      </div>
+    </div><div class="round-col sf">
+      <div class="match ">
+        <div class="match-title">Semifinal</div>
+        <div class="team"><span class="flag">🇳🇴</span><span>Norge</span></div><div class="team"><span class="flag">🇪🇸</span><span>Spanien</span></div>
+      </div>
+    </div><div class="round-col final">
+      <div class="match final-match">
+        <div class="match-title">Final</div>
+        <div class="team"><span class="flag">🇪🇸</span><span>Spanien</span></div><div class="team"><span class="flag">🇫🇷</span><span>Frankrike</span></div>
+      </div>
+    
+      <div class="match bronze-match">
+        <div class="match-title">Bronsmatch</div>
+        <div class="team"><span class="flag">🇳🇴</span><span>Norge</span></div><div class="team"><span class="flag">🇦🇷</span><span>Argentina</span></div>
+      </div>
+    </div><div class="round-col sf">
+      <div class="match ">
+        <div class="match-title">Semifinal</div>
+        <div class="team"><span class="flag">🇫🇷</span><span>Frankrike</span></div><div class="team"><span class="flag">🇦🇷</span><span>Argentina</span></div>
+      </div>
+    </div><div class="round-col qf">
+      <div class="match ">
+        <div class="match-title">Kvartsfinal</div>
+        <div class="team"><span class="flag">🇫🇷</span><span>Frankrike</span></div><div class="team"><span class="flag">🇰🇷</span><span>Sydkorea</span></div>
+      </div>
+    
+      <div class="match ">
+        <div class="match-title">Kvartsfinal</div>
+        <div class="team"><span class="flag">🇦🇷</span><span>Argentina</span></div><div class="team"><span class="flag">🇵🇹</span><span>Portugal</span></div>
+      </div>
+    </div><div class="round-col r16">
+      <div class="match ">
+        <div class="match-title">Åttondelsfinal</div>
+        <div class="team"><span class="flag">🇧🇷</span><span>Brasilien</span></div><div class="team"><span class="flag">🇫🇷</span><span>Frankrike</span></div>
+      </div>
+    
+      <div class="match ">
+        <div class="match-title">Åttondelsfinal</div>
+        <div class="team"><span class="flag">🇰🇷</span><span>Sydkorea</span></div><div class="team"><span class="flag">🇭🇷</span><span>Kroatien</span></div>
+      </div>
+    
+      <div class="match ">
+        <div class="match-title">Åttondelsfinal</div>
+        <div class="team"><span class="flag">🇦🇷</span><span>Argentina</span></div><div class="team"><span class="flag">🇹🇷</span><span>Turkiet</span></div>
+      </div>
+    
+      <div class="match ">
+        <div class="match-title">Åttondelsfinal</div>
+        <div class="team"><span class="flag">🇨🇭</span><span>Schweiz</span></div><div class="team"><span class="flag">🇵🇹</span><span>Portugal</span></div>
+      </div>
+    </div><div class="round-col s16">
+      <div class="match ">
+        <div class="match-title">Sextondelsfinal</div>
+        <div class="team"><span class="flag">🇧🇷</span><span>Brasilien</span></div><div class="team"><span class="flag">🇸🇪</span><span>Sverige</span></div>
+      </div>
+    
+      <div class="match ">
+        <div class="match-title">Sextondelsfinal</div>
+        <div class="team"><span class="flag">🇪🇨</span><span>Ecuador</span></div><div class="team"><span class="flag">🇫🇷</span><span>Frankrike</span></div>
+      </div>
+    
+      <div class="match ">
+        <div class="match-title">Sextondelsfinal</div>
+        <div class="team"><span class="flag">🇰🇷</span><span>Sydkorea</span></div><div class="team"><span class="flag">🇸🇦</span><span>Saudiarabien</span></div>
+      </div>
+    
+      <div class="match ">
+        <div class="match-title">Sextondelsfinal</div>
+        <div class="team"><span class="flag">🇭🇷</span><span>Kroatien</span></div><div class="team"><span class="flag">🇨🇩</span><span>Kongo</span></div>
+      </div>
+    
+      <div class="match ">
+        <div class="match-title">Sextondelsfinal</div>
+        <div class="team"><span class="flag">🇦🇷</span><span>Argentina</span></div><div class="team"><span class="flag">🇺🇾</span><span>Uruguay</span></div>
+      </div>
+    
+      <div class="match ">
+        <div class="match-title">Sextondelsfinal</div>
+        <div class="team"><span class="flag">🇹🇷</span><span>Turkiet</span></div><div class="team"><span class="flag">🇮🇷</span><span>Iran</span></div>
+      </div>
+    
+      <div class="match ">
+        <div class="match-title">Sextondelsfinal</div>
+        <div class="team"><span class="flag">🇨🇭</span><span>Schweiz</span></div><div class="team"><span class="flag">🇩🇿</span><span>Algeriet</span></div>
+      </div>
+    
+      <div class="match ">
+        <div class="match-title">Sextondelsfinal</div>
+        <div class="team"><span class="flag">🇵🇹</span><span>Portugal</span></div><div class="team"><span class="flag">🇬🇭</span><span>Ghana</span></div>
+      </div>
+    </div>
     </div>
   </div>
 </div>

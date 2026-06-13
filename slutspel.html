@@ -6,43 +6,108 @@
 <title>Slutspel – VM-tipset</title>
 <style>
 :root {
-  --green: #0b7a3b;
-  --green-dark: #07592b;
+  --green: #07592b;
+  --green2: #0b7a3b;
   --gold: #ffd35a;
-  --line: #d4d4d8;
-  --soft: #f7faf8;
+  --bg: #eef6f0;
+  --card: #ffffff;
+  --line: #d7e1dc;
+  --text: #1f2933;
 }
 * { box-sizing: border-box; }
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: linear-gradient(135deg, #eaf6ee 0%, #ffffff 45%, #f3f6fb 100%);
-  color: #1f2933;
+  color: var(--text);
 }
-.container { max-width: 1280px; margin: 0 auto; padding: 20px; }
-.hero {
-  border-radius: 18px;
-  background: linear-gradient(135deg, var(--green-dark), var(--green));
-  color: white;
-  padding: 24px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-  margin-bottom: 18px;
-}
-.hero h1 { margin: 0 0 8px 0; font-size: 30px; }
-.hero p { margin: 0; opacity: 0.92; }
-.nav { margin: 0 0 18px 0; display: flex; gap: 10px; flex-wrap: wrap; }
-.nav a, .button {
-  display: inline-block;
+.container { padding: 20px; max-width: 1600px; margin: 0 auto; }
+.nav { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+.nav a {
   text-decoration: none;
-  color: #07592b;
-  background: #fff;
-  border: 1px solid #dbe4df;
+  color: var(--green);
+  background: white;
+  border: 1px solid var(--line);
   padding: 10px 14px;
   border-radius: 999px;
   font-weight: 700;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
-.nav a:hover, .button:hover { background: #f1f8f3; }
+.hero {
+  background: linear-gradient(135deg, var(--green), var(--green2));
+  color: white;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.15);
+  margin-bottom: 18px;
+}
+.hero h1 { margin: 0 0 6px; }
+.hero p { margin: 0; opacity: .9; }
+.bracket {
+  overflow-x: auto;
+  background: white;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 4px 18px rgba(0,0,0,.10);
+}
+.bracket-grid {
+  min-width: 1420px;
+  display: grid;
+  grid-template-columns: 1.15fr 1.1fr 1.05fr 1fr 1.15fr 1fr 1.05fr 1.1fr 1.15fr;
+  gap: 14px;
+  align-items: center;
+}
+.round-col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.round-col.r16 { gap: 52px; }
+.round-col.qf { gap: 150px; }
+.round-col.sf { gap: 360px; }
+.round-col.final { gap: 40px; }
+.match {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 9px;
+  min-height: 92px;
+  box-shadow: 0 2px 9px rgba(0,0,0,.08);
+}
+.match-title {
+  display: inline-block;
+  background: var(--green);
+  color: white;
+  font-weight: 800;
+  font-size: 12px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  margin-bottom: 7px;
+  white-space: nowrap;
+}
+.match.final-match {
+  border: 2px solid var(--gold);
+  background: linear-gradient(135deg, #fff9df, #ffffff);
+}
+.match.final-match .match-title {
+  background: linear-gradient(135deg, var(--gold), #ffec9f);
+  color: var(--green);
+}
+.team {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  padding: 7px 8px;
+  margin: 5px 0;
+  font-weight: 700;
+  min-height: 34px;
+  white-space: nowrap;
+}
+.flag { font-size: 18px; }
+.empty { color: #94a3b8; }
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -53,70 +118,14 @@ body {
   border-radius: 18px;
   padding: 22px;
   text-decoration: none;
-  color: #1f2933;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
-  border: 1px solid #e2e8f0;
-  transition: .18s ease;
+  color: var(--text);
+  box-shadow: 0 4px 16px rgba(0,0,0,.10);
+  border: 1px solid var(--line);
 }
-.card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+.card:hover { transform: translateY(-3px); }
 .card .icon { font-size: 42px; }
-.card h2 { margin: 12px 0 8px; color: #07592b; }
-.card p { margin: 0; color: #64748b; line-height: 1.4; }
-.bracket-wrap {
-  overflow-x: auto;
-  background: white;
-  border-radius: 18px;
-  padding: 18px;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.10);
-  border: 1px solid #e2e8f0;
-}
-.bracket-grid {
-  display: grid;
-  grid-auto-rows: 30px;
-  grid-template-columns: repeat(var(--cols), minmax(54px, 1fr));
-  gap: 4px;
-  min-width: 1040px;
-}
-.cell {
-  border-radius: 8px;
-  min-height: 30px;
-  padding: 5px 7px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  white-space: nowrap;
-}
-.team {
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
-  font-weight: 700;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-}
-.round {
-  background: #07592b;
-  color: white;
-  font-weight: 800;
-  border: 1px solid #07592b;
-  letter-spacing: .01em;
-}
-.matchno {
-  background: #fff7db;
-  border: 1px solid #f4c542;
-  color: #604600;
-  font-size: 12px;
-  font-weight: 800;
-}
-.final-team {
-  background: #fff7db;
-  border: 2px solid #ffd35a;
-}
-.winner {
-  background: linear-gradient(135deg, #fff7db, #ffffff);
-  border: 2px solid #ffd35a;
-  color: #07592b;
-  font-weight: 900;
-}
+.card h2 { margin: 10px 0 8px; color: var(--green); }
+.card p { margin: 0; color: #64748b; }
 @media (max-width: 700px) {
   .container { padding: 10px; }
   .hero h1 { font-size: 24px; }
@@ -126,37 +135,29 @@ body {
 <body>
 <div class="container">
   <div class="nav">
-    <a href="index.html">🏠 Till portalen</a>
+    <a href="index.html">🏠 Portal</a>
     <a href="grundspel.html">⚽ Grundspel</a>
     <a href="bonusfragor.html">⭐ Bonusfrågor</a>
   </div>
   <div class="hero">
     <h1>🏆 Slutspelsträd</h1>
-    <p>Välj deltagare för att se hur respektive slutspelsträd ser ut baserat på tippat grundspel.</p>
+    <p>Välj deltagare för att se ett modernt slutspelsträd.</p>
   </div>
-  <div class="cards">
-    
-<a class="card" href="slutspel-borna.html">
+  <div class="cards"><a class="card" href="slutspel-borna.html">
   <div class="icon">🏆</div>
-  <h2>Bornas slutspelsträd</h2>
-  <p>Se hela vägen från sextondelsfinal till final enligt Bornas grundspelstips.</p>
+  <h2>Bornas träd</h2>
+  <p>Se Bornas tippade slutspel från sextondelsfinal till final.</p>
 </a>
-
-
 <a class="card" href="slutspel-david.html">
   <div class="icon">🏆</div>
-  <h2>Davids slutspelsträd</h2>
-  <p>Se hela vägen från sextondelsfinal till final enligt Davids grundspelstips.</p>
+  <h2>Davids träd</h2>
+  <p>Se Davids tippade slutspel från sextondelsfinal till final.</p>
 </a>
-
-
 <a class="card" href="slutspel-oskar.html">
   <div class="icon">🏆</div>
-  <h2>Oskars slutspelsträd</h2>
-  <p>Se hela vägen från sextondelsfinal till final enligt Oskars grundspelstips.</p>
-</a>
-
-  </div>
+  <h2>Oskars träd</h2>
+  <p>Se Oskars tippade slutspel från sextondelsfinal till final.</p>
+</a></div>
 </div>
 </body>
 </html>
