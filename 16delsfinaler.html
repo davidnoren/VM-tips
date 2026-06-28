@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VM-tipset – 16-delsfinaler</title>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css">
+<style>
+:root {
+  --green: #0b7a3b;
+  --green-dark: #07592b;
+  --gold: #ffd35a;
+  --line: #cfcfcf;
+  --soft: #f7faf8;
+  --win: #dff5e6;
+  --loss: #fff1f1;
+  --draw: #fff7db;
+}
+body { margin:0; font-family:Arial,sans-serif; background:linear-gradient(135deg,#eaf6ee 0%,#ffffff 45%,#f3f6fb 100%); color:#1f2933; }
+.container { margin:20px; }
+.hero { border-radius:18px; background:linear-gradient(135deg,var(--green-dark),var(--green)); color:white; padding:24px; box-shadow:0 8px 24px rgba(0,0,0,0.15); margin-bottom:18px; }
+.hero h1 { margin:0 0 8px 0; font-size:30px; }
+.hero p { margin:0; opacity:.9; }
+.scoreboard { display:flex; gap:12px; flex-wrap:wrap; margin:18px 0; }
+.score-card { min-width:130px; background:white; border:1px solid #e2e8f0; border-radius:14px; padding:14px 18px; box-shadow:0 3px 10px rgba(0,0,0,0.08); }
+.score-name { font-weight:bold; color:var(--green-dark); }
+.score-points { font-size:32px; font-weight:bold; line-height:1.1; }
+.score-label { color:#64748b; font-size:12px; text-transform:uppercase; letter-spacing:.05em; }
+.info { background:#fff; border-left:5px solid var(--gold); padding:12px 16px; border-radius:8px; margin-bottom:16px; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+.table-wrap { background:white; border-radius:14px; padding:14px; box-shadow:0 4px 18px rgba(0,0,0,0.10); overflow-x:auto; }
+table.dataTable { border-collapse:collapse !important; width:100% !important; }
+table.dataTable th, table.dataTable td { border:1px solid var(--line) !important; padding:8px !important; text-align:left; vertical-align:middle; }
+table.dataTable thead th { position:sticky; top:0; z-index:5; background:var(--green) !important; color:white !important; white-space:nowrap; }
+table.dataTable tbody tr:nth-child(even) { background-color:var(--soft); }
+table.dataTable tbody tr:hover { background-color:#eef7ff; }
+.team { font-weight:600; white-space:nowrap; }
+.flag { font-size:19px; margin-right:4px; }
+.result-input,.tip-input { width:78px; padding:6px 8px; border:1px solid #94a3b8; border-radius:8px; font-size:14px; text-align:center; }
+.winner { background:var(--win) !important; font-weight:bold; }
+.loser { background:var(--loss) !important; }
+.draw-team { background:var(--draw) !important; font-weight:bold; }
+.exact { background:#dff5e6 !important; font-weight:bold; }
+.outcome { background:#fff7db !important; font-weight:bold; }
+.miss { color:#94a3b8; }
+.points-cell { text-align:center !important; font-weight:bold; }
+@media (max-width:700px) { .container { margin:10px; } .hero h1 { font-size:24px; } table.dataTable th,table.dataTable td { padding:6px !important; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <h1>🏆 VM-tipset – 16-delsfinaler</h1>
+    <p>Fyll i resultat och tips, så räknas poängen automatiskt och vinnande lag markeras.</p>
+  </div>
+  <div class="scoreboard">
+    <div class="score-card" data-player-card="Borna"><div class="score-name">Borna</div><div class="score-points">0</div><div class="score-label">poäng</div></div><div class="score-card" data-player-card="David"><div class="score-name">David</div><div class="score-points">0</div><div class="score-label">poäng</div></div><div class="score-card" data-player-card="Oskar"><div class="score-name">Oskar</div><div class="score-points">0</div><div class="score-label">poäng</div></div>
+  </div>
+  <div class="info"><strong>Poängregler:</strong> 2 poäng för rätt antal mål för hemmalag, 2 poäng för rätt antal mål för bortalag och 3 poäng för rätt tecken (1/X/2). Max 7 poäng per match. Tips skrivs t.ex. <strong>2-1</strong>.</div>
+  <div class="table-wrap">
+    <table id="matches" class="display">
+      <thead><tr><th>Match</th><th>Datum</th><th>Hemmalag</th><th>Bortalag</th><th>Resultat</th><th>Borna tips</th><th>David tips</th><th>Oskar tips</th><th>Borna poäng</th><th>David poäng</th><th>Oskar poäng</th></tr></thead>
+      <tbody>
+<tr data-index="0">
+  <td>73</td>
+  <td>2026-06-28</td>
+  <td class="team home-team"><span class="flag">🇿🇦</span> Sydafrika</td>
+  <td class="team away-team"><span class="flag">🇨🇦</span> Kanada</td>
+  <td><input class="result-input" type="text" value="" placeholder="-" aria-label="Resultat match 73"></td>
+  <td class="tip" data-player="Borna"><input class="tip-input" type="text" value="" aria-label="Borna tips match 73"></td><td class="tip" data-player="David"><input class="tip-input" type="text" value="" aria-label="David tips match 73"></td><td class="tip" data-player="Oskar"><input class="tip-input" type="text" value="" aria-label="Oskar tips match 73"></td>
+  <td class="points-cell" data-player="Borna">–</td><td class="points-cell" data-player="David">–</td><td class="points-cell" data-player="Oskar">–</td>
+</tr>
+<tr data-index="1">
+  <td>74</td>
+  <td>2026-06-29</td>
+  <td class="team home-team"><span class="flag">🇩🇪</span> Tyskland</td>
+  <td class="team away-team"><span class="flag">🇵🇾</span> Paraguay</td>
+  <td><input class="result-input" type="text" value="" placeholder="-" aria-label="Resultat match 74"></td>
+  <td class="tip" data-player="Borna"><input class="tip-input" type="text" value="" aria-label="Borna tips match 74"></td><td class="tip" data-player="David"><input class="tip-input" type="text" value="" aria-label="David tips match 74"></td><td class="tip" data-player="Oskar"><input class="tip-input" type="text" value="" aria-label="Oskar tips match 74"></td>
+  <td class="points-cell" data-player="Borna">–</td><td class="points-cell" data-player="David">–</td><td class="points-cell" data-player="Oskar">–</td>
+</tr>
+<tr data-index="2">
+  <td>75</td>
+  <td>2026-06-29</td>
+  <td class="team home-team"><span class="flag">🇳🇱</span> Nederländerna</td>
+  <td class="team away-team"><span class="flag">🇲🇦</span> Marocko</td>
+  <td><input class="result-input" type="text" value="" placeholder="-" aria-label="Resultat match 75"></td>
+  <td class="tip" data-player="Borna"><input class="tip-input" type="text" value="" aria-label="Borna tips match 75"></td><td class="tip" data-player="David"><input class="tip-input" type="text" value="" aria-label="David tips match 75"></td><td class="tip" data-player="Oskar"><input class="tip-input" type="text" value="" aria-label="Oskar tips match 75"></td>
+  <td class="points-cell" data-player="Borna">–</td><td class="points-cell" data-player="David">–</td><td class="points-cell" data-player="Oskar">–</td>
+</tr>
+<tr data-index="3">
+  <td>76</td>
+  <td>2026-06-29</td>
+  <td class="team home-team"><span class="flag">🇧🇷</span> Brasilien</td>
+  <td class="team away-team"><span class="flag">🇯🇵</span> Japan</td>
+  <td><input class="result-input" type="text" value="" placeholder="-" aria-label="Resultat match 76"></td>
+  <td class="tip" data-player="Borna"><input class="tip-input" type="text" value="" aria-label="Borna tips match 76"></td><td class="tip" data-player="David"><input class="tip-input" type="text" value="" aria-label="David tips match 76"></td><td class="tip" data-player="Oskar"><input class="tip-input" type="text" value="" aria-label="Oskar tips match 76"></td>
+  <td class="points-cell" data-player="Borna">–</td><td class="points-cell" data-player="David">–</td><td class="points-cell" data-player="Oskar">–</td>
+</tr>
+<tr data-index="4">
+  <td>77</td>
+  <td>2026-06-30</td>
+  <td class="team home-team"><span class="flag">🇫🇷</span> Frankrike</td>
+  <td class="team away-team"><span class="flag">🇸🇪</span> Sverige</td>
+  <td><input class="result-input" type="text" value="" placeholder="-" aria-label="Resultat match 77"></td>
+  <td class="tip" data-player="Borna"><input class="tip-input" type="text" value="" aria-label="Borna tips match 77"></td><td class="tip" data-player="David"><input class="tip-input" type="text" value="" aria-label="David tips match 77"></td><td class="tip" data-player="Oskar"><input class="tip-input" type="text" value="" aria-label="Oskar tips match 77"></td>
+  <td class="points-cell" data-player="Borna">–</td><td class="points-cell" data-player="David">–</td><td class="points-cell" data-player="Oskar">–</td>
+</tr>
+<tr data-index="5">
+  <td>78</td>
+  <td>2026-06-30</td>
+  <td class="team home-team"><span class="flag">🇨🇮</span> Elfenbenskusten</td>
+  <td class="team away-team"><span class="flag">🇳🇴</span> Norge</td>
+  <td><input class="result-input" type="text" value="" placeholder="-" aria-label="Resultat match 78"></td>
+  <td class="tip" data-player="Borna"><input class="tip-input" type="text" value="" aria-label="Borna tips match 78"></td><td class="tip" data-player="David"><input class="tip-input" type="text" value="" aria-label="David tips match 78"></td><td class="tip" data-player="Oskar"><input class="tip-input" type="text" value="" aria-label="Oskar tips match 78"></td>
+  <td class="points-cell" data-player="Borna">–</td><td class="points-cell" data-player="David">–</td><td class="points-cell" data-player="Oskar">–</td>
+</tr>
+<tr data-index="6">
+  <td>79</td>
+  <td>2026-06-30</td>
+  <td class="team home-team"><span class="flag">🇲🇽</span> Mexiko</td>
+  <td class="team away-team"><span class="flag">🏳️</span> Ecuador</td>
+  <td><input class="result-input" type="text" value="" placeholder="-" aria-label="Resultat match 79"></td>
+  <td class="tip" data-player="Borna"><input class="tip-input" type="text" value="" aria-label="Borna tips match 79"></td><td class="tip" data-player="David"><input class="tip-input" type="text" value="" aria-label="David tips match 79"></td><td class="tip" data-player="Oskar"><input class="tip-input" type="text" value="" aria-label="Oskar tips match 79"></td>
+  <td class="points-cell" data-player="Borna">–</td><td class="points-cell" data-player="David">–</td><td class="points-cell" data-player="Oskar">–</td>
+</tr>
+<tr data-index="7">
+  <td>80</td>
+  <td>2026-07-01</td>
+  <td class="team home-team"><span class="flag">🏴</span> England</td>
+  <td class="team away-team"><span class="flag">🏳️</span> Kongo</td>
+  <td><input class="result-input" type="text" value="" placeholder="-" aria-label="Resultat match 80"></td>
+  <td class="tip" data-player="Borna"><input class="tip-input" type="text" value="" aria-label="Borna tips match 80"></td><td class="tip" data-player="David"><input class="tip-input" type="text" value="" aria-label="David tips match 80"></td><td class="tip" data-player="Oskar"><input class="tip-input" type="text" value="" aria-label="Oskar tips match 80"></td>
+  <td class="points-cell" data-player="Borna">–</td><td class="points-cell" data-player="David">–</td><td class="points-cell" data-player="Oskar">–</td>
+</tr>
+<tr data-index="8">
+  <td>81</td>
+  <td>2026-07-01</td>
+  <td class="team home-team"><span class="flag">🇺🇸</span> USA</td>
+  <td class="team away-team"><span class="flag">🇧🇦</span> Bosnien-Herzigovina</td>
+  <td><input class="result-input" type="text" value="" placeholder="-" aria-label="Resultat match 81"></td>
+  <td class="tip" data-player="Borna"><input class="tip-input" type="text" value="" aria-label="Borna tips match 81"></td><td class="tip" data-player="David"><input class="tip-input" type="text" value="" aria-label="David tips match 81"></td><td class="tip" data-player="Oskar"><input class="tip-input" type="text" value="" aria-label="Oskar tips match 81"></td>
+  <td class="points-cell" data-player="Borna">–</td><td class="points-cell" data-player="David">–</td><td class="points-cell" data-player="Oskar">–</td>
+</tr>
+<tr data-index="9">
+  <td>82</td>
+  <td>2026-07-01</td>
+  <td class="team home-team"><span class="flag">🇧🇪</span> Belgien</td>
+  <td class="team away-team"><span class="flag">🇸🇳</span> Senegal</td>
+  <td><input class="result-input" type="text" value="" placeholder="-" aria-label="Resultat match 82"></td>
+  <td class="tip" data-player="Borna"><input class="tip-input" type="text" value="" aria-label="Borna tips match 82"></td><td class="tip" data-player="David"><input class="tip-input" type="text" value="" aria-label="David tips match 82"></td><td class="tip" data-player="Oskar"><input class="tip-input" type="text" value="" aria-label="Oskar tips match 82"></td>
+  <td class="points-cell" data-player="Borna">–</td><td class="points-cell" data-player="David">–</td><td class="points-cell" data-player="Oskar">–</td>
+</tr>
+<tr data-index="10">
+  <td>83</td>
+  <td>2026-07-02</td>
+  <td class="team home-team"><span class="flag">🇵🇹</span> Portugal</td>
+  <td class="team away-team"><span class="flag">🇭🇷</span> Kroatien</td>
+  <td><input class="result-input" type="text" value="" placeholder="-" aria-label="Resultat match 83"></td>
+  <td class="tip" data-player="Borna"><input class="tip-input" type="text" value="" aria-label="Borna tips match 83"></td><td class="tip" data-player="David"><input class="tip-input" type="text" value="" aria-label="David tips match 83"></td><td class="tip" data-player="Oskar"><input class="tip-input" type="text" value="" aria-label="Oskar tips match 83"></td>
+  <td class="points-cell" data-player="Borna">–</td><td class="points-cell" data-player="David">–</td><td class="points-cell" data-player="Oskar">–</td>
+</tr>
+<tr data-index="11">
+  <td>84</td>
+  <td>2026-07-02</td>
+  <td class="team home-team"><span class="flag">🇪🇸</span> Spanien</td>
+  <td class="team away-team"><span class="flag">🇦🇹</span> Österrike</td>
+  <td><input class="result-input" type="text" value="" placeholder="-" aria-label="Resultat match 84"></td>
+  <td class="tip" data-player="Borna"><input class="tip-input" type="text" value="" aria-label="Borna tips match 84"></td><td class="tip" data-player="David"><input class="tip-input" type="text" value="" aria-label="David tips match 84"></td><td class="tip" data-player="Oskar"><input class="tip-input" type="text" value="" aria-label="Oskar tips match 84"></td>
+  <td class="points-cell" data-player="Borna">–</td><td class="points-cell" data-player="David">–</td><td class="points-cell" data-player="Oskar">–</td>
+</tr>
+<tr data-index="12">
+  <td>85</td>
+  <td>2026-07-02</td>
+  <td class="team home-team"><span class="flag">🇨🇭</span> Schweiz</td>
+  <td class="team away-team"><span class="flag">🏳️</span> Algeriet</td>
+  <td><input class="result-input" type="text" value="" placeholder="-" aria-label="Resultat match 85"></td>
+  <td class="tip" data-player="Borna"><input class="tip-input" type="text" value="" aria-label="Borna tips match 85"></td><td class="tip" data-player="David"><input class="tip-input" type="text" value="" aria-label="David tips match 85"></td><td class="tip" data-player="Oskar"><input class="tip-input" type="text" value="" aria-label="Oskar tips match 85"></td>
+  <td class="points-cell" data-player="Borna">–</td><td class="points-cell" data-player="David">–</td><td class="points-cell" data-player="Oskar">–</td>
+</tr>
+<tr data-index="13">
+  <td>86</td>
+  <td>2026-07-03</td>
+  <td class="team home-team"><span class="flag">🇦🇺</span> Australien</td>
+  <td class="team away-team"><span class="flag">🇪🇬</span> Egypten</td>
+  <td><input class="result-input" type="text" value="" placeholder="-" aria-label="Resultat match 86"></td>
+  <td class="tip" data-player="Borna"><input class="tip-input" type="text" value="" aria-label="Borna tips match 86"></td><td class="tip" data-player="David"><input class="tip-input" type="text" value="" aria-label="David tips match 86"></td><td class="tip" data-player="Oskar"><input class="tip-input" type="text" value="" aria-label="Oskar tips match 86"></td>
+  <td class="points-cell" data-player="Borna">–</td><td class="points-cell" data-player="David">–</td><td class="points-cell" data-player="Oskar">–</td>
+</tr>
+<tr data-index="14">
+  <td>87</td>
+  <td>2026-07-03</td>
+  <td class="team home-team"><span class="flag">🇦🇷</span> Argentina</td>
+  <td class="team away-team"><span class="flag">🏳️</span> Kap Verde</td>
+  <td><input class="result-input" type="text" value="" placeholder="-" aria-label="Resultat match 87"></td>
+  <td class="tip" data-player="Borna"><input class="tip-input" type="text" value="" aria-label="Borna tips match 87"></td><td class="tip" data-player="David"><input class="tip-input" type="text" value="" aria-label="David tips match 87"></td><td class="tip" data-player="Oskar"><input class="tip-input" type="text" value="" aria-label="Oskar tips match 87"></td>
+  <td class="points-cell" data-player="Borna">–</td><td class="points-cell" data-player="David">–</td><td class="points-cell" data-player="Oskar">–</td>
+</tr>
+<tr data-index="15">
+  <td>88</td>
+  <td>2026-07-03</td>
+  <td class="team home-team"><span class="flag">🇨🇴</span> Colombia</td>
+  <td class="team away-team"><span class="flag">🇬🇭</span> Ghana</td>
+  <td><input class="result-input" type="text" value="" placeholder="-" aria-label="Resultat match 88"></td>
+  <td class="tip" data-player="Borna"><input class="tip-input" type="text" value="" aria-label="Borna tips match 88"></td><td class="tip" data-player="David"><input class="tip-input" type="text" value="" aria-label="David tips match 88"></td><td class="tip" data-player="Oskar"><input class="tip-input" type="text" value="" aria-label="Oskar tips match 88"></td>
+  <td class="points-cell" data-player="Borna">–</td><td class="points-cell" data-player="David">–</td><td class="points-cell" data-player="Oskar">–</td>
+</tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+<script>
+const players = ["Borna", "David", "Oskar"];
+function parseScore(value) {
+  if (!value) return null;
+  const m = String(value).trim().match(/^(\d+)\s*[-–—:]\s*(\d+)$/);
+  if (!m) return null;
+  return [parseInt(m[1], 10), parseInt(m[2], 10)];
+}
+function outcome(score) {
+  if (!score) return null;
+  if (score[0] > score[1]) return "H";
+  if (score[0] < score[1]) return "B";
+  return "X";
+}
+function points(result, tip) {
+  const r = parseScore(result);
+  const t = parseScore(tip);
+  if (!r || !t) return null;
+  let p = 0;
+  if (r[0] === t[0]) p += 2;
+  if (r[1] === t[1]) p += 2;
+  if (outcome(r) === outcome(t)) p += 3;
+  return p;
+}
+function updateScores() {
+  const table = $('#matches').DataTable();
+  const totals = Object.fromEntries(players.map(p => [p, 0]));
+  $(table.rows().nodes()).each(function() {
+    const row = $(this);
+    const result = row.find('.result-input').val();
+    const r = parseScore(result);
+    const rOutcome = outcome(r);
+    row.find('.home-team, .away-team').removeClass('winner loser draw-team');
+    if (r) {
+      if (rOutcome === 'H') { row.find('.home-team').addClass('winner'); row.find('.away-team').addClass('loser'); }
+      else if (rOutcome === 'B') { row.find('.away-team').addClass('winner'); row.find('.home-team').addClass('loser'); }
+      else { row.find('.home-team, .away-team').addClass('draw-team'); }
+    }
+    players.forEach(function(player) {
+      const tipCell = row.find('.tip[data-player="' + player + '"]');
+      const tipValue = tipCell.find('.tip-input').val();
+      const pointsCell = row.find('.points-cell[data-player="' + player + '"]');
+      const p = points(result, tipValue);
+      tipCell.removeClass('exact outcome miss');
+      if (p === null) { pointsCell.text('–'); }
+      else {
+        pointsCell.text(p);
+        totals[player] += p;
+        if (p === 7) tipCell.addClass('exact');
+        else if (outcome(parseScore(result)) === outcome(parseScore(tipValue))) tipCell.addClass('outcome');
+        else tipCell.addClass('miss');
+      }
+    });
+  });
+  players.forEach(function(player) { $('.score-card[data-player-card="' + player + '"] .score-points').text(totals[player]); });
+}
+$(document).ready(function() {
+  const table = $('#matches').DataTable({
+    pageLength: 25,
+    order: [[0, 'asc']],
+    language: { search: 'Sök:', lengthMenu: 'Visa _MENU_ matcher', info: 'Visar _START_ till _END_ av _TOTAL_ matcher', paginate: { previous: 'Föregående', next: 'Nästa' }, zeroRecords: 'Inga matcher hittades' }
+  });
+  $(document).on('input', '.result-input, .tip-input', updateScores);
+  table.on('draw', updateScores);
+  setTimeout(updateScores, 500);
+});
+</script>
+</body>
+</html>
